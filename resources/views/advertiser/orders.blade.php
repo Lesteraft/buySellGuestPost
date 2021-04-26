@@ -17,7 +17,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 mt-4">
-            <livewire:heading2 site="advertiser" currentlySite="dashboard" />
+            <livewire:heading2 site="advertiser" currentlySite="Orders" />
         </div>
 
         <div class="col-md-2 dashboard_sidebar">
@@ -43,11 +43,11 @@
                 <hr style="background-color: white;">
 
                 <li>
-                    <a href="{{ route('advertiser.index') }}" class="orders dashboard" style="color: #0090bf; background: #eff1f1; font-weight: 500;">Dashboard</a>
+                    <a href="{{ route('advertiser.index') }}" class="orders " style="color: white;">Dashboard</a>
                 </li>
 
                 <li>
-                    <a href="{{ route('advertiser.orders') }}" class="orders" style="color: white;">Orders</a>
+                    <a href="{{ route('advertiser.orders') }}" class="orders dashboard" style="color: #0090bf; background: #eff1f1; font-weight: 500;">Orders</a>
                 </li>
 
                 <li>
@@ -69,68 +69,16 @@
 
         </div>
 
-        <div class="col-10">
-            <div class="col-12 row">
-            
-                <div class="col-md-4">
-                    <table class="table table-bordered text-center">
-                        <tbody>
-                            <tr>
-                                <th class="my-top-bar">
-                                    Total purchases
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="card-big-text">0</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            
-                <div class="col-md-4">
-                    <table class="table table-bordered text-center">
-                        <tbody>
-                            <tr>
-                                <th class="my-top-bar">
-                                    Completed Orders
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="card-big-text">0</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            
-                <div class="col-md-4">
-                    <table class="table table-bordered text-center">
-                        <tbody>
-                            <tr>
-                                <th class="my-top-bar">
-                                    Active Orders
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="card-big-text">0</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            
-            </div>
+        <div class="col-md-10" style="padding: 0 0 0 40px">
 
-            <div class="col-12">
-                <table class="table properties-table list-table">
+
+        	<div class="col-md-12">
+        		
+        		<table class="table properties-table list-table">
                 <tbody>
                     <tr>
                         <th class="my-top-bar" colspan="6">
-                            Orders
+                        Guest Post Service Orders
                         </th>
                     </tr>
                     <tr class="text-muted text-uppercase">
@@ -138,8 +86,7 @@
                         <th width="20%">Item</th>
                         <th width="13%">Price</th>
                         <th width="15%">Date</th>
-                        <th width="15%">Due Date</th>
-                        <th width="25%">Status</th>
+                        <th width="15%">Status</th>
                     </tr>
                 </tbody>
                 <tbody>
@@ -149,13 +96,14 @@
                     <tr>
                         <td class="text-center" colspan="6">
                             <a href="#" class="btn-advertiser" style="color: #0068a3; border: 1px solid #ccc; font-weight: 400; padding: .5rem .75rem; font-size: 1rem; line-height: 1.25; border-radius: .25rem;">
-                                Go to Orders Page
+                                Load More
                             </a>
                         </td>
                     </tr>
                 </tfoot>
             </table>
-            </div>
+        		
+        	</div>
 
         </div>
 

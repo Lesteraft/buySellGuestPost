@@ -177,13 +177,23 @@ a {
 
 .dropdown-user a {
     display: block;
-    padding: .6rem;
+    padding: .6rem 2.9rem;
     border: 1px solid transparent;
     border-radius: 6px;
 }
 
 .dropdown-user a:hover {
     background-color: #0d68a8;
+}
+
+.active {
+    background-color: #1F4967 !important;
+    color: white !important;
+}
+
+
+.nohober-a:hover{
+    background-color: transparent;
 }
 
 .buyer-seller {

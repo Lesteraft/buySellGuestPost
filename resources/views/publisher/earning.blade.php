@@ -11,9 +11,6 @@
 <link rel="stylesheet" href="{{ asset('css/advertiser.css') }}">
 
 <style>
-    body {
-        font-size: 14px;
-    }
 
     .withdraw-btn {
         display: inline-block;
@@ -40,10 +37,28 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-5">
 	<div class="row">
-		<div class="col-12 mt-4">
-            <livewire:heading2 site="advertiser" currentlySite="earning" />
+
+
+        <div class="col-12 mt-3">
+            <div class="col-12 row">
+                <div class="col-12">
+                    <div class="pb-3 heading mb-4">
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h1 class="h1-heading">
+                                        Advertiser »
+                                        <span class="text-muted"> Earning </span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <div class="col-md-2 dashboard_sidebar">

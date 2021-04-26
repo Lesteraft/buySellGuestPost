@@ -14,10 +14,32 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-5">
 	<div class="row">
-		<div class="col-12 mt-4">
-            <livewire:heading2 site="advertiser" currentlySite="dashboard" />
+
+        <div class="col-12 mt-3">
+            <div class="col-12 row">
+                <div class="col-12">
+                    <div class="pb-3 heading mb-4">
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h1 class="h1-heading">
+                                        Advertiser »
+                                        <span class="text-muted"> Dashboard </span>
+                                    </h1>
+                                </div>
+                                <div class="col-4">
+                                    <div style="text-align: right">
+                                        <a href="{{ route('publisher.submitws') }}" class="btn btn-success" style="padding: 0.5rem; font-size: 14px;" > + Submit Website</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <div class="col-md-2 dashboard_sidebar">

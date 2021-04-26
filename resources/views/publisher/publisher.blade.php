@@ -17,7 +17,23 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <livewire:heading />
+            <!-- <livewire:heading /> -->
+            <div class="col-12 row">
+                <div class="col-8">
+                    <div class="pb-3 heading my-4">
+                        <div class="container mt-4">
+                            <h1 class="h1-heading">
+                                Advertiser
+                                <span class="text-muted"> Dashboard </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button>+ submit website</button>
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-2 dashboard_sidebar">

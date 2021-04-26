@@ -54,7 +54,8 @@ class CartController extends AppBaseController
             return view('carts.show');
         }
         else {
-            return back();
+            // return view('pages.marketplace')->with();
+            return redirect()->route('marketplace')->with('warning', 'Cart is Empty, Please add at least one product in the cart');
         }
 
 

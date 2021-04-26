@@ -89,6 +89,8 @@ Route::get('publisher/add', [PublisherController::class, 'websiteAdd'])->middlew
 
 Route::get('publisher/websites', [PublisherController::class, 'websites'])->middleware('auth')->name('publisher.websites');
 
+// Route::get('publisher/websites/submitws', [PublisherController::class, 'websites'])->middleware('auth')->name('publisher.submitws');
+
 Route::get('publisher/orders', [PublisherController::class, 'orders'])->middleware('auth')->name('publisher.orders');
 
 Route::get('publisher/earning', [PublisherController::class, 'earning'])->middleware('auth')->name('publisher.earning');
@@ -103,7 +105,7 @@ Route::get('buy', [BuyController::class, 'marketplace'])->name('buy.marketplace'
 
 Route::get('search', [CategoryController::class, 'search'])->name('search');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::post('paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');
 

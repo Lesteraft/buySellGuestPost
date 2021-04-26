@@ -49,16 +49,26 @@
                             </a>
                         </li>
 
-                        <div class="dropdown-user" style="display: none;">
+                        <div class="dropdown-user" style="display: none; padding: 0px;">
                             <div class="buyer-seller">
-                                <a href="{{ route('advertiser.index') }}">Buyer</a>
-                                <a href="{{ route('publisher.index') }}">Seller</a>
+                                <a href="{{ route('advertiser.index') }}" style="padding: .6rem 1.8re;">Buyer</a>
+                                <a href="{{ route('publisher.index') }}" style="padding: .6rem 1.8re;">Seller</a>
                             </div>
-                            <a href="{{ route('user.edit') }}">My Profile</a>
-                            <a href="{{ route('advertiser.index') }}">Transactions History</a>
-                            <a href="">Balance: $0</a>
+                            <a href="{{ route('user.edit') }}" style="padding: .6rem 1.8re;">My Profile</a>
+                            <a href="{{ route('advertiser.index') }}" style="padding: .6rem 1.8re;">Transactions History</a>
+                            <a 
+                                style="background: #1f4967"
+                                onMouseOver="this.style.backgroundColor='#1f4967'"
+                            >Balance: $0</a>
                             <div>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <a 
+                                    style="padding: .6rem 1.8re;"
+                                    href="{{ route('logout') }}" 
+                                    onclick="event.preventDefault(); 
+                                    document.getElementById('logout-form').submit();"
+                                    >
+                                    Logout
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

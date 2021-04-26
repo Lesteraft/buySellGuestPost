@@ -103,7 +103,7 @@ Route::get('buy', [BuyController::class, 'marketplace'])->name('buy.marketplace'
 
 Route::get('search', [CategoryController::class, 'search'])->name('search');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::post('paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');
 

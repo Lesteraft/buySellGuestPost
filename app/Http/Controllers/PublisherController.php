@@ -72,4 +72,9 @@ class PublisherController extends AppBaseController
 
         return view('publisher.websites')->with('categories', $categories)->with('status', $status);
     }
+
+    public function submitWebsites()
+    {
+        return view('publisher.submitws');
+    }
 }

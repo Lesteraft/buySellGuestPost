@@ -18,7 +18,7 @@
             </div>
     </div>
     <div class="secondSection">
-            &copy; 2020 BuySellGuestPost.com
+            &copy; 2021 Amits website created by Techology of Consulfinhn
             <div class="secondSectionLink">
                 <a class="sSecLink" href="{{ route('faqs') }}">FAQs</a>
                 <a class="sSecLink" href="{{ route('term') }}">Terms</a>

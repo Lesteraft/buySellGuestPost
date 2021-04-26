@@ -122,11 +122,22 @@ Route::get('publisher/add', [PublisherController::class, 'websiteAdd'])->middlew
 
 Route::get('publisher/websites', [PublisherController::class, 'websites'])->middleware('auth')->name('publisher.websites');
 
+Route::get('publisher/websites/submitws', [PublisherController::class, 'submitWebsites'])->middleware('auth')->name('publisher.submitws');
+
+
 Route::get('publisher/orders', [PublisherController::class, 'orders'])->middleware('auth')->name('publisher.orders');
 
 Route::get('publisher/earning', [PublisherController::class, 'earning'])->middleware('auth')->name('publisher.earning');
 
 Route::get('advertiser', [AdvertiserController::class, 'index'])->middleware('auth')->name('advertiser.index');
+
+Route::get('advertiser/orders', [AdvertiserController::class, 'orders'])->middleware('auth')->name('advertiser.orders');
+
+Route::get('advertiser/service-orders', [AdvertiserController::class, 'serviceOrder'])->middleware('auth')->name('advertiser.serviceo');
+
+Route::get('advertiser/dadr', [AdvertiserController::class, 'goDADR'])->middleware('auth')->name('advertiser.dadr');
+
+Route::get('advertiser/deposit', [AdvertiserController::class, 'goDeposit'])->middleware('auth')->name('advertiser.deposit');
 
 Route::get('account', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
 
@@ -136,7 +147,7 @@ Route::get('buy', [BuyController::class, 'marketplace'])->name('buy.marketplace'
 
 Route::get('search', [CategoryController::class, 'search'])->name('search');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Payment
 Route::get('paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');

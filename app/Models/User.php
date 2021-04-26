@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, Billable;
 
@@ -23,6 +23,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'email_verified_at',
         'website_id',
         'phone',
         'skype',
@@ -30,6 +31,7 @@ class User extends Authenticatable
     ];
 
     /**
+     * Auth::routes(['verify' => true]);
      * The attributes that should be hidden for arrays.
      *
      * @var array
