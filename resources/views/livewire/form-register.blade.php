@@ -51,6 +51,10 @@
             <button type="button" wire:click="submit()" id="btn-register" class="btn" style="cursor: pointer;">
                 Register Now
             </button>
+
+            <!-- <a href="{{ route('marketplace') }}"  id="btn-register" class="btn" style="cursor: pointer;">
+                Register Now
+            </a> -->
         </div>
     </div>
        

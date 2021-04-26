@@ -6,6 +6,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Model\User;
+use App\Models\UserCode;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -168,5 +169,18 @@ class UserController extends AppBaseController
         }
 
         return view('users.account')->with('user', $user);
+    }
+
+    
+    public function verifyCode(Request $request)
+    {
+        $userCode = UserCode::where('user_id', Auth()->User()->id)->first();
+
+        if ($userCode) {
+            Auth()->User()->markEmailAsVerified();
+        }
+
+        return redirect()->to('/');
+
     }
 }

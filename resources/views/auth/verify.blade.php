@@ -16,8 +16,11 @@
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}
                     {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                    <form class="d-inline" method="POST" action="{{ route('auth.verify') }}">
                         @csrf
+
+                        <input type="text" name="value" style="text-decoration:none;color:#000;background:#f5f5f5;width:150px;font-size:20px;padding:10px 80px;font-weight:bold">
+
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                     </form>
                 </div>

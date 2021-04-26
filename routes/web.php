@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\PaymentController;
+use App\Models\UserCode;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,38 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('verification-code/resend', function () {
+
+    $user = Auth()->User();
+    $nombre = Auth()->User()->first_name;
+    $to = Auth()->User()->email;
+    $caracteres_permitidos = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $longitud = 6;
+    $codigo = substr(str_shuffle($caracteres_permitidos), 0, $longitud);
+
+    $code = UserCode::create([
+        'user_id' => $user->id,
+        'code' => $codigo
+    ]);
+
+    Mail::send('mail', ['nombre' => $nombre, 'codigo' => $codigo, 'user' => $user], function ($message) use ($to){
+
+        $message->subject('Correo de verificación');
+        $message->to($to);
+    
+    });
+
+    return redirect()->to('verification-code');
+
+})->name('send.verification.code');
+
+
+Route::get('verification-code', function () {
+    return view('auth.verification');
+})->name('auth.verification');
+
+Route::post('verificatio-done', [UserController::class, 'verifyCode'])->name('auth.verification');
+
 //PRINCIPAL ROUTES
 
 Route::get('sell-guest-posts', function() {
@@ -57,7 +90,7 @@ Route::get('plan-basic', function() {
 
 Route::get('step-2', function() {
   return view('buy.cart2');
-})->middleware('auth')->name('step-2');
+})->middleware('auth')->middleware('verifiedEmail')->name('step-2');
 
 Route::get('plan-standard', function () {
     return view('buy.cart3');
@@ -65,7 +98,7 @@ Route::get('plan-standard', function () {
 
 Route::get('plan-standard2', function () {
     return view('buy.cart4');
-})->middleware('auth')->name('plan-standard2');
+})->middleware('auth')->middleware('verifiedEmail')->name('plan-standard2');
 
 Route::get('plan-premium', function () {
     return view('buy.cart5');
@@ -73,7 +106,7 @@ Route::get('plan-premium', function () {
 
 Route::get('plan-premium2', function () {
     return view('buy.cart6');
-})->middleware('auth')->name('plan-premium2');
+})->middleware('auth')->middleware('verifiedEmail')->name('plan-premium2');
 
 Route::get('plan-premium+', function () {
     return view('buy.cart7');
@@ -81,7 +114,7 @@ Route::get('plan-premium+', function () {
 
 Route::get('plan-premium+-2', function () {
     return view('buy.cart8');
-})->middleware('auth')->name('plan-premium+-2');
+})->middleware('auth')->middleware('verifiedEmail')->name('plan-premium+-2');
 
 //Carrito
 Route::get('cart/add/{web_id}', [CartController::class, 'add'])->name('cart.add');
@@ -116,30 +149,30 @@ Route::get('refound-policy', function() {
 	return view('subpages.refoundPolicy');
 })->name('refound-policy');
 
-Route::get('publisher', [PublisherController::class, 'index'])->middleware('auth')->name('publisher.index');
+Route::get('publisher', [PublisherController::class, 'index'])->middleware('auth')->middleware('verifiedEmail')->name('publisher.index');
 
-Route::get('publisher/add', [PublisherController::class, 'websiteAdd'])->middleware('auth')->name('publisher.add');
+Route::get('publisher/add', [PublisherController::class, 'websiteAdd'])->middleware('auth')->middleware('verifiedEmail')->name('publisher.add');
 
-Route::get('publisher/websites', [PublisherController::class, 'websites'])->middleware('auth')->name('publisher.websites');
+Route::get('publisher/websites', [PublisherController::class, 'websites'])->middleware('auth')->middleware('verifiedEmail')->name('publisher.websites');
 
-Route::get('publisher/websites/submitws', [PublisherController::class, 'submitWebsites'])->middleware('auth')->name('publisher.submitws');
+Route::get('publisher/websites/submitws', [PublisherController::class, 'submitWebsites'])->middleware('auth')->middleware('verifiedEmail')->name('publisher.submitws');
 
 
-Route::get('publisher/orders', [PublisherController::class, 'orders'])->middleware('auth')->name('publisher.orders');
+Route::get('publisher/orders', [PublisherController::class, 'orders'])->middleware('auth')->middleware('verifiedEmail')->name('publisher.orders');
 
-Route::get('publisher/earning', [PublisherController::class, 'earning'])->middleware('auth')->name('publisher.earning');
+Route::get('publisher/earning', [PublisherController::class, 'earning'])->middleware('auth')->middleware('verifiedEmail')->name('publisher.earning');
 
-Route::get('advertiser', [AdvertiserController::class, 'index'])->middleware('auth')->name('advertiser.index');
+Route::get('advertiser', [AdvertiserController::class, 'index'])->middleware('auth')->middleware('verifiedEmail')->name('advertiser.index');
 
-Route::get('advertiser/orders', [AdvertiserController::class, 'orders'])->middleware('auth')->name('advertiser.orders');
+Route::get('advertiser/orders', [AdvertiserController::class, 'orders'])->middleware('auth')->middleware('verifiedEmail')->name('advertiser.orders');
 
-Route::get('advertiser/service-orders', [AdvertiserController::class, 'serviceOrder'])->middleware('auth')->name('advertiser.serviceo');
+Route::get('advertiser/service-orders', [AdvertiserController::class, 'serviceOrder'])->middleware('auth')->middleware('verifiedEmail')->name('advertiser.serviceo');
 
-Route::get('advertiser/dadr', [AdvertiserController::class, 'goDADR'])->middleware('auth')->name('advertiser.dadr');
+Route::get('advertiser/dadr', [AdvertiserController::class, 'goDADR'])->middleware('auth')->middleware('verifiedEmail')->name('advertiser.dadr');
 
-Route::get('advertiser/deposit', [AdvertiserController::class, 'goDeposit'])->middleware('auth')->name('advertiser.deposit');
+Route::get('advertiser/deposit', [AdvertiserController::class, 'goDeposit'])->middleware('auth')->middleware('verifiedEmail')->name('advertiser.deposit');
 
-Route::get('account', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
+Route::get('account', [UserController::class, 'edit'])->middleware('auth')->middleware('verifiedEmail')->name('user.edit');
 
 Route::get('buy/{category}', [BuyController::class, 'show'])->name('buy.category');
 
@@ -148,6 +181,8 @@ Route::get('buy', [BuyController::class, 'marketplace'])->name('buy.marketplace'
 Route::get('search', [CategoryController::class, 'search'])->name('search');
 
 Auth::routes(['verify' => true]);
+
+// Route::post('login', [LoginController::class, 'login'])->name('login');
 
 // Payment
 Route::get('paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('payWithPayPal');
@@ -187,7 +222,7 @@ Route::get('paypal/checkout-cancel', function() {
 	return view('paypal.cancel');
 })->name('paypal.cancel');
 
-route::get('buy/cart', [CartController::class, 'create'])->middleware('auth')->name('buy.cart');
+route::get('buy/cart', [CartController::class, 'create'])->middleware('auth')->middleware('verifiedEmail')->name('buy.cart');
 
 Route::resource('websites', App\Http\Controllers\WebsiteController::class);
 
