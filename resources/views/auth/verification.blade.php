@@ -46,7 +46,7 @@
 															>Request</button>.
 													</form>
 
-													<a href="{{ route('send.verification.code') }}"> <small>enviar el código nuevamente</small></a>
+													<a href="{{ route('send.verification.code') }}"> <small>resend code...</small></a>
 
 												</td>
 											</tr>

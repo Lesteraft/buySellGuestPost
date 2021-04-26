@@ -38,37 +38,37 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request) 
-    {
-        $user = User::where('email', $request['email'])->first();
+    // public function login(Request $request) 
+    // {
+    //     $user = User::where('email', $request['email'])->first();
 
-        Auth::login($user);
+    //     Auth::login($user);
 
-        if (Auth()->User()->hasVerifiedEmail()) {
-            return redirect()->to('/');
-        } else {
+    //     if (Auth()->User()->hasVerifiedEmail()) {
+    //         return redirect()->to('/');
+    //     } else {
 
-            $nombre = $user->email;
-            $to = $user->firs_name;
-            $caracteres_permitidos = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $longitud = 6;
-            $codigo = substr(str_shuffle($caracteres_permitidos), 0, $longitud);
+    //         $nombre = $user->email;
+    //         $to = $user->firs_name;
+    //         $caracteres_permitidos = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    //         $longitud = 6;
+    //         $codigo = substr(str_shuffle($caracteres_permitidos), 0, $longitud);
 
-            $code = UserCode::create([
-                'user_id' => $user->id,
-                'code' => $codigo
-            ]);
+    //         $code = UserCode::create([
+    //             'user_id' => $user->id,
+    //             'code' => $codigo
+    //         ]);
 
-            Mail::send('mail', ['nombre' => $nombre, 'codigo' => $codigo, 'user' => $user], function ($message) use ($to){
+    //         Mail::send('mail', ['nombre' => $nombre, 'codigo' => $codigo, 'user' => $user], function ($message) use ($to){
 
-                $message->subject('Correo de verificación');
-                $message->to($to);
+    //             $message->subject('Correo de verificación');
+    //             $message->to($to);
             
-            });
+    //         });
 
-            return redirect()->to('verification-code');
-        }
+    //         return redirect()->to('verification-code');
+    //     }
         
-    }
+    // }
 
 }
