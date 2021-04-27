@@ -1,8 +1,8 @@
 <footer class="footer">
     <div class="firtSection">
             <div class="footer__links">
-                <a class="linksF" href="{{ route('marketplace') }}">Buy gues posts</a>
-                <a class="linksF" href="{{ route('sell-guest-posts') }}">Sell gues post</a>
+                <a class="linksF" href="{{ route('marketplace') }}">Buy guest posts</a>
+                <a class="linksF" href="{{ route('sell-guest-posts') }}">Sell guest post</a>
                 <a class="linksF" href="{{ route('marketplace') }}">Marketplace</a>
                 <a class="linksF" href="{{ route('contact.index') }}">Contact</a>
             </div>
